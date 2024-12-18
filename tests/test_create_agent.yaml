@@ -1,7 +1,7 @@
-name: 'Авторизация'
-cmd: 'pytest --alluredir={allure_reports_path} tests/test_open_account_page.py'
+name: 'Создание контрагента'
+cmd: 'pytest --alluredir={allure_reports_path} tests/test_create_agent.py'
 steps:
   - 'Открытие стартовой страницы'
   - 'Внесение авторизационных данных, нажатие кнопки "Войти"'
   - 'Открытие главной страницы'
-  - 'Открытие аккаунта лида'
+  - 'Создание контрагента'

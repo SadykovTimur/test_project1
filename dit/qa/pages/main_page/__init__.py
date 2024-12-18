@@ -19,6 +19,8 @@ class MainPage(Page):
     main = Main(id="content")
     footer = Component(tag="footer")
     loader = Component(id="loadingPage")
+    button_last = Button(css='[class*="action-last"]')
+    select = Button(id="MassUpdate_select_button")
 
     @property
     def is_loader_hide(self) -> bool:
@@ -44,36 +46,76 @@ class MainPage(Page):
         wait_for(condition, msg='Главная страница не загружена')
         self.app.restore_implicitly_wait()
 
-    def wait_account_page(self) -> None:
+    def wait_leads(self) -> None:
         def condition() -> bool:
             try:
                 assert self.main.table.visible
 
-                return self.main.title_account == ' ACCOUNTS'
+                return self.main.title_account == ' LEADS'
 
             except NoSuchElementException:
 
                 return False
 
         self.app.set_implicitly_wait(1)
-        wait_for(condition, msg='Страница с созданием аккаунта не загружена')
+        wait_for(condition, msg='Страница лида не загружена')
         self.app.restore_implicitly_wait()
 
-    def wait_lead_account(self) -> None:
+    def wait_create(self) -> None:
         def condition() -> bool:
             try:
-                assert self.main.view.visible
-                assert self.main.list.visible
-                assert self.is_loader_hide
+                assert self.main.panel.visible
 
-                return self.main.title_account == 'NAMEACC'
+                return self.main.title_account == 'CREATE'
 
             except NoSuchElementException:
 
                 return False
 
         self.app.set_implicitly_wait(1)
-        wait_for(condition, msg='Страница Лида не загружена')
+        wait_for(condition, msg='Страница с созданием лида не загружена')
+        self.app.restore_implicitly_wait()
+
+    def wait_create_leads(self) -> None:
+        def condition() -> bool:
+            try:
+                return self.main.title_account == 'AUTOTEST123'
+
+            except NoSuchElementException:
+
+                return False
+
+        self.app.set_implicitly_wait(1)
+        wait_for(condition, msg='Лид не был создан')
+        self.app.restore_implicitly_wait()
+
+    def wait_accounts(self) -> None:
+        def condition() -> bool:
+            try:
+                assert self.main.table.visible
+                assert self.is_loader_hide
+
+                return self.main.title_account == 'ACCOUNTS'
+
+            except NoSuchElementException:
+
+                return False
+
+        self.app.set_implicitly_wait(1)
+        wait_for(condition, msg='Страница аккаунта не загружена')
+        self.app.restore_implicitly_wait()
+
+    def wait_create_agent(self) -> None:
+        def condition() -> bool:
+            try:
+                return self.main.title_account == 'AUTOTESTAGENT123'
+
+            except NoSuchElementException:
+
+                return False
+
+        self.app.set_implicitly_wait(1)
+        wait_for(condition, msg='Контрагент не был создан')
         self.app.restore_implicitly_wait()
 
     def wait_add_lead(self) -> None:

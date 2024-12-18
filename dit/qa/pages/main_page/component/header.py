@@ -13,6 +13,7 @@ class HeaderWrapper(ComponentWrapper):
     logo = Button(css='[class*="home"]')
     marketing = Button(xpath='//a[text()="Marketing"]')
     account = Button(css='[id*="Accounts"]')
+    leads = Button(css='[id*="Leads"]')
 
     @property
     def is_visible(self) -> bool:

@@ -1,4 +1,5 @@
 from coms.qa.frontend.pages.component import Component, ComponentWrapper
+from coms.qa.frontend.pages.component.button import Button
 
 __all__ = ['Sidebar']
 
@@ -6,6 +7,7 @@ __all__ = ['Sidebar']
 class SidebarWrapper(ComponentWrapper):
     recently = Component(id="recentlyViewedSidebar")
     favorite = Component(id="favoritesSidebar")
+    create_lead = Button(xpath='//div[text()="Create Lead"]')
 
     @property
     def is_visible(self) -> bool:
