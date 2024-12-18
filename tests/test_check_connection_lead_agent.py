@@ -6,7 +6,7 @@ from _pytest.fixtures import FixtureRequest
 from coms.qa.fixtures.application import Application
 from coms.qa.frontend.constants import CLIENT_BROWSERS, CLIENT_DEVICE_TYPE
 
-from tests.steps import open_main_page, open_start_page, sign_in, check_connection
+from tests.steps import open_main_page, open_start_page, sign_in, check_connection, create_agent
 
 
 @allure.epic('TEST_PROJECT')
@@ -23,5 +23,7 @@ def test_check_connection_lead_agent(
     sign_in(app, request.config.option.username, request.config.option.password)
 
     open_main_page(app)
+
+    create_agent(app)
 
     check_connection(app)

@@ -12,7 +12,6 @@ __all__ = [
     'open_main_page',
     'create_lead',
     'create_agent',
-    'check_connection',
 ]
 
 
@@ -82,8 +81,8 @@ def create_lead(app: Application, last_name: str = "Autotest123") -> None:
             raise e
 
 
-def create_agent(app: Application, name: str = "AutotestAgent123") -> None:
-    with allure.step('Creating agent'):
+def check_connection_lead(app: Application, name: str = "AutotestAgent123") -> None:
+    with allure.step('Checking connection lead'):
         try:
             page = MainPage(app)
             page.header.marketing.click()
@@ -98,40 +97,18 @@ def create_agent(app: Application, name: str = "AutotestAgent123") -> None:
 
             page.wait_create_agent()
 
-            screenshot_attach(app, 'create_agent')
-        except Exception as e:
-            screenshot_attach(app, 'create_agent_error')
-
-            raise e
-
-
-def check_connection(app: Application) -> None:
-    with allure.step('Checking connection'):
-        try:
-            page = MainPage(app)
-            page.header.marketing.click()
-            page.header.account.click()
-
-            page.wait_accounts()
-
-            page.main.list_view.click()
-            page.main.list_view.click()
-
-            page.main.agent.click()
-            page.wait_create_agent()
-
             page.main.leads_title.click()
             page.main.create.click()
             page.main.account_lead.click()
             app.driver.switch_to.window(app.driver.window_handles[1])
             page.button_last.click()
-            page.main.checkbox[0].webelement.click()
+            page.main.checkbox.click()
             page.select.click()
 
             page.wait_add_lead()
 
-            screenshot_attach(app, 'check_connection')
+            screenshot_attach(app, 'check_connection_lead')
         except Exception as e:
-            screenshot_attach(app, 'check_connection_error')
+            screenshot_attach(app, 'check_connection_lead_error')
 
             raise e

@@ -121,6 +121,8 @@ class MainPage(Page):
     def wait_add_lead(self) -> None:
         def condition() -> bool:
             try:
+                assert self.main.title_account == 'AUTOTESTAGENT123'
+
                 return self.main.name_lead.visible
 
             except NoSuchElementException:
