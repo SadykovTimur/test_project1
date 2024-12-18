@@ -12,10 +12,7 @@ class HeaderWrapper(ComponentWrapper):
     create = Component(css='[class="desktop-bar"] [id="quickcreatetop"] ')
     logo = Button(css='[class*="home"]')
     marketing = Button(xpath='//a[text()="Marketing"]')
-    # account = Button(xpath='//a[text()="Marketing"]/preceding:: a[text()="Accounts"]')
-    account = Button(
-        css='[href="?action=ajaxui#ajaxUILoc=index.php%3Fmodule%3DAccounts%26action%3Dindex%26parentTab%3DMarketing"]'
-    )
+    account = Button(css='[id*="Accounts"]')
 
     @property
     def is_visible(self) -> bool:
